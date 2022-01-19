@@ -13,31 +13,39 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridTile(
-      child: CachedNetworkImage(
-        fit: BoxFit.cover,
-        imageUrl: imageUrl!,
-      ),
-      footer: GridTileBar(
-        backgroundColor: Colors.black54,
-        title: Text(
-          price!,
-          textAlign: TextAlign.center,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: GridTile(
+        child: CachedNetworkImage(
+          fit: BoxFit.cover,
+          imageUrl: imageUrl!,
         ),
-        trailing:
-            IconButton(onPressed: () {}, icon: Icon(Icons.add_shopping_cart)),
-        leading: IconButton(
-            onPressed: () {}, icon: Icon(Icons.favorite_border_rounded)),
-      ),
-      header: GridTileBar(
-        backgroundColor: Colors.black12,
-        title: Text(title!),
-        leading: Text(
-          id!,
-          style: TextStyle(
-              color: Colors.deepOrange,
-              fontWeight: FontWeight.bold,
-              fontSize: 18),
+        footer: GridTileBar(
+          backgroundColor: Colors.black87,
+          title: Text(
+            price!,
+            textAlign: TextAlign.center,
+          ),
+          trailing: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.add_shopping_cart),
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          leading: IconButton(
+              color: Theme.of(context).colorScheme.secondary,
+              onPressed: () {},
+              icon: Icon(Icons.favorite_border_rounded)),
+        ),
+        header: GridTileBar(
+          backgroundColor: Colors.black54,
+          title: Text(title!),
+          leading: Text(
+            id!,
+            style: TextStyle(
+                color: Colors.deepOrange,
+                fontWeight: FontWeight.bold,
+                fontSize: 18),
+          ),
         ),
       ),
     );
