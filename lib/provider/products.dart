@@ -9,7 +9,7 @@ class Products with ChangeNotifier {
     Product(
       title: 'T-shirt',
       description: 'Trouser for Men',
-      id: '1',
+      id: 'p1',
       price: '499.00',
       imageUrl:
           'https://5.imimg.com/data5/YX/OO/TA/ANDROID-108727015/product-jpeg-500x500.jpg',
@@ -17,7 +17,7 @@ class Products with ChangeNotifier {
     Product(
       title: 'Jeans',
       description: 'Trouser for Men',
-      id: '1',
+      id: 'p2',
       price: '40.00',
       imageUrl:
           'https://tiimg.tistatic.com/fp/1/006/253/full-sleeves-pink-color-girls-t-shirts-551.jpg',
@@ -25,14 +25,14 @@ class Products with ChangeNotifier {
     Product(
         title: 'Trouser',
         description: 'Trouser for Men',
-        id: '1',
+        id: 'p3',
         price: '499.00',
         imageUrl:
             'https://4.imimg.com/data4/KA/WM/ANDROID-21901465/product-250x250.jpeg'),
     Product(
       title: 'Mask',
       description: 'Trouser for Men',
-      id: '1',
+      id: 'p4',
       price: '499.00',
       imageUrl:
           'https://images.bewakoof.com/original/anonymous-mask-vest-men-s-printed-round-neck-vest-232419-1567158564.jpg',
@@ -40,7 +40,11 @@ class Products with ChangeNotifier {
   ];
 
   List<Product> get iteams {
-    return _iteams;
+    return [..._iteams];
+  }
+
+  Product findById(String id) {
+    return _iteams.firstWhere((element) => element.id == id);
   }
 
   void addProduct() {

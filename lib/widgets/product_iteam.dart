@@ -19,7 +19,7 @@ class ProductItem extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, 'product_detail_screen',
-                arguments: title);
+                arguments: id);
           },
           child: CachedNetworkImage(
             fit: BoxFit.cover,
