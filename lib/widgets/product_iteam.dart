@@ -17,12 +17,10 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     //if we make listen false then change will be disapeared...
     //this will rebuild only ones not everytime...
-    final product = Provider.of<Product>(context, listen: false);
+    final product = Provider.of<Product>(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: GridTile(
-
-
         child: GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, 'product_detail_screen',
@@ -34,8 +32,6 @@ class ProductItem extends StatelessWidget {
           ),
         ),
 
-
-
         //Footer
         footer: GridTileBar(
           backgroundColor: Colors.black87,
@@ -43,7 +39,6 @@ class ProductItem extends StatelessWidget {
             product.price!,
             textAlign: TextAlign.center,
           ),
-
 
           trailing: IconButton(
             onPressed: () {},
@@ -64,7 +59,6 @@ class ProductItem extends StatelessWidget {
                     : Icons.favorite_border)),
           ),
         ),
-
 
         //Header
         header: GridTileBar(

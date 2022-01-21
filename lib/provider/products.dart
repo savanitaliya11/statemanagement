@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/cupertino.dart';
-import 'package:statemanagement/models/product.dart';
+import 'package:statemanagement/provider/product.dart';
 
 //Mixin class ChangeNotifier
 class Products with ChangeNotifier {
@@ -40,7 +40,11 @@ class Products with ChangeNotifier {
   ];
 
   List<Product> get iteams {
-    return [..._iteams];
+    return _iteams;
+  }
+
+  List<Product> get fav {
+    return _iteams.where((element) => element.isFavorite).toList();
   }
 
   Product findById(String id) {

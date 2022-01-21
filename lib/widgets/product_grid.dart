@@ -6,11 +6,14 @@ import 'package:statemanagement/provider/products.dart';
 import 'package:statemanagement/widgets/product_iteam.dart';
 
 class ProductGrid extends StatelessWidget {
+  bool showFav;
+
+  ProductGrid({required this.showFav});
   @override
   Widget build(BuildContext context) {
     //call provider here to get data in this file
     final productsData = Provider.of<Products>(context);
-    final products = productsData.iteams;
+    final products = showFav ? productsData.fav : productsData.iteams;
 
     return GridView.builder(
       padding: EdgeInsets.all(7),
@@ -19,8 +22,9 @@ class ProductGrid extends StatelessWidget {
           childAspectRatio: 3 / 3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10),
-      itemBuilder: (context, i) => ChangeNotifierProvider(
-        create: (c) => products[i],
+      itemBuilder: (context, i) => ChangeNotifierProvider.value(
+        value: products[i],
+        //create: (c) => products[i],
         child: ProductItem(
             // price: products[i].price,
             // title: products[i].title,
