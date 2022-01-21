@@ -15,10 +15,14 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    //if we make listen false then change will be disapeared...
+    //this will rebuild only ones not everytime...
+    final product = Provider.of<Product>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: GridTile(
+
+
         child: GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, 'product_detail_screen',
@@ -29,25 +33,40 @@ class ProductItem extends StatelessWidget {
             imageUrl: product.imageUrl!,
           ),
         ),
+
+
+
+        //Footer
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           title: Text(
             product.price!,
             textAlign: TextAlign.center,
           ),
+
+
           trailing: IconButton(
             onPressed: () {},
             icon: Icon(Icons.add_shopping_cart),
             color: Theme.of(context).colorScheme.secondary,
           ),
-          leading: IconButton(
-              color: Theme.of(context).colorScheme.secondary,
-              onPressed: () {
-                product.toggalFavouriteStatus();
-              },
-              icon: Icon(
-                  product.isFavorite ? Icons.favorite : Icons.favorite_border)),
+
+          //Consumer only rebuild the widget of Iconbutton.
+          //<Product> call the data from provider/product.dart
+          leading: Consumer<Product>(
+            builder: (ctx, product, Widget? child) => IconButton(
+                color: Theme.of(context).colorScheme.secondary,
+                onPressed: () {
+                  product.toggalFavouriteStatus();
+                },
+                icon: Icon(product.isFavorite
+                    ? Icons.favorite
+                    : Icons.favorite_border)),
+          ),
         ),
+
+
+        //Header
         header: GridTileBar(
           backgroundColor: Colors.black54,
           title: Text(product.title!),
