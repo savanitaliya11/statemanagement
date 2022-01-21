@@ -22,10 +22,10 @@ class Cart with ChangeNotifier {
       _iteams!.update(
           id,
           (existingIteam) => CartIteam(
-              id: id,
+              id: existingIteam.id,
               quntity: existingIteam.quntity! + 1,
-              title: title,
-              price: price));
+              title: existingIteam.title,
+              price: existingIteam.price));
     } else {
       _iteams!.putIfAbsent(
           id,
