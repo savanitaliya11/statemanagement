@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:statemanagement/provider/cart.dart';
 import 'package:statemanagement/provider/products.dart';
+import 'package:statemanagement/widgets/bandge.dart';
 import 'package:statemanagement/widgets/product_grid.dart';
 
 enum filterOptions { all, favouriteOnly }
@@ -45,29 +47,44 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
         ),
       ),
       appBar: AppBar(
+        //PopupMenuButton
         actions: [
           PopupMenuButton(
-              onSelected: (filterOptions selectedvalue) {
-                setState(() {
-                  if (selectedvalue == filterOptions.favouriteOnly) {
-                    _showFavourite = true;
-                  } else {
-                    _showFavourite = false;
-                  }
-                });
-              },
-              icon: Icon(Icons.more_vert),
-              itemBuilder: (_) => [
-                    PopupMenuItem(
-                      child: Text('Only Favourite'),
-                      value: filterOptions.favouriteOnly,
-                    ),
-                    PopupMenuItem(
-                      child: Text('Show all'),
-                      value: filterOptions.all,
-                    )
-                  ])
+            onSelected: (filterOptions selectedvalue) {
+              setState(() {
+                if (selectedvalue == filterOptions.favouriteOnly) {
+                  _showFavourite = true;
+                } else {
+                  _showFavourite = false;
+                }
+              });
+            },
+            icon: Icon(Icons.more_vert),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                child: Text('Only Favourite'),
+                value: filterOptions.favouriteOnly,
+              ),
+              PopupMenuItem(
+                child: Text('Show all'),
+                value: filterOptions.all,
+              ),
+            ],
+          ),
+          Consumer<Cart>(
+            builder: (context, cart, Widget? ch) => Bandge(
+              child: ch,
+              value: cart.iteamCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              onPressed: () {},
+            ),
+          )
         ],
+
         title: Text(
           'My Shop',
           style: TextStyle(fontFamily: 'Lato'),
