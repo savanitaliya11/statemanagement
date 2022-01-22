@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:statemanagement/provider/cart.dart';
 import 'package:statemanagement/provider/products.dart';
 import 'package:statemanagement/screens/product_detail_screen.dart';
 import 'package:statemanagement/screens/product_overview_screen.dart';
@@ -18,9 +19,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //wrap changeNotifierProvider on MaterialAPP therefore we can notify/use value
     //where we want
-    return ChangeNotifierProvider(
-      //give instance or way to provider which will call
-      create: (BuildContext context) => Products(),
+    return MultiProvider(
+      //Multi provider provides more than one provider value to the material app
+      //as material app is child of multi provider.
+      providers: [
+        ChangeNotifierProvider(
+          //give instance or way to provider which will call
+          create: (BuildContext context) => Products(),
+        ),
+
+        //this will also work same as like create but sometime it might be act as bug or create bug...
+        // ChangeNotifierProvider.value(value: Cart()),
+
+        //using create is safe or more efficient as compared to use value....
+        ChangeNotifierProvider(create: (context) => Cart())
+      ],
 
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
