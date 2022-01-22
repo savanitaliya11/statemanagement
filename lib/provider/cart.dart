@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_types_as_parameter_names
+
 import 'package:flutter/cupertino.dart';
 
 class CartIteam {
@@ -42,6 +44,11 @@ class Cart with ChangeNotifier {
       _iteams.putIfAbsent(
           id, () => CartIteam(id: id, price: price, title: title, quntity: 1));
     }
+    notifyListeners();
+  }
+
+  void iteamRemove(String id) {
+    _iteams.remove(id);
     notifyListeners();
   }
 }

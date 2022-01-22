@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:statemanagement/componant/constant.dart';
 import 'package:statemanagement/provider/cart.dart';
-import 'package:statemanagement/screens/cart_iteam.dart';
+import 'package:statemanagement/widgets/cart_iteam.dart';
 
 class MyCart extends StatelessWidget {
   const MyCart({Key? key}) : super(key: key);
@@ -60,8 +60,9 @@ class MyCart extends StatelessWidget {
               itemCount: cart.iteamCount,
               itemBuilder: (BuildContext context, i) => CartData(
                 title: cart.iteams.values.toList()[i].title,
-                price: cart.iteams.values.toList()[i].price,
+                price: cart.iteams.values.toList()[i].price.toString(),
                 id: cart.iteams.values.toList()[i].id,
+                productId: cart.iteams.keys.toList()[i],
                 quntity: cart.iteams.values.toList()[i].quntity,
               ),
             ),
