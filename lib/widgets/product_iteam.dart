@@ -4,20 +4,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:statemanagement/provider/cart.dart';
 import 'package:statemanagement/provider/product.dart';
 
 class ProductItem extends StatelessWidget {
-  // String? id;
-  // String? title;
-  // String? imageUrl;
-  // String? price;
-  // ProductItem({this.id, this.title, this.imageUrl, this.price});
-
   @override
   Widget build(BuildContext context) {
-    //if we make listen false then change will be disapeared...
-    //this will rebuild only ones not everytime...
+    //if we make listen false then change will be disappeared...
+    //this will rebuild only ones not every time...
     final product = Provider.of<Product>(context);
+    final cart = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: GridTile(
@@ -36,17 +32,19 @@ class ProductItem extends StatelessWidget {
         footer: GridTileBar(
           backgroundColor: Colors.black87,
           title: Text(
-            product.price!,
+            product.price!.toString(),
             textAlign: TextAlign.center,
           ),
 
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cart.addCart(product.id!, product.title!, product.price!);
+            },
             icon: Icon(Icons.add_shopping_cart),
             color: Theme.of(context).colorScheme.secondary,
           ),
 
-          //Consumer only rebuild the widget of Iconbutton.
+          //Consumer only rebuild the widget of Icon button.
           //<Product> call the data from provider/product.dart
           leading: Consumer<Product>(
             builder: (ctx, product, Widget? child) => IconButton(
@@ -64,13 +62,13 @@ class ProductItem extends StatelessWidget {
         header: GridTileBar(
           backgroundColor: Colors.black54,
           title: Text(product.title!),
-          leading: Text(
-            product.id!,
-            style: TextStyle(
-                color: Colors.deepOrange,
-                fontWeight: FontWeight.bold,
-                fontSize: 18),
-          ),
+          // leading: Text(
+          //   product.id!,
+          //   style: TextStyle(
+          //       color: Colors.deepOrange,
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 18),
+          // ),
         ),
       ),
     );
