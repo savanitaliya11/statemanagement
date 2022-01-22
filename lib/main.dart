@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:statemanagement/provider/cart.dart';
+import 'package:statemanagement/provider/order.dart';
 import 'package:statemanagement/provider/products.dart';
 import 'package:statemanagement/screens/cart_screen.dart';
 import 'package:statemanagement/screens/product_detail_screen.dart';
@@ -33,7 +34,9 @@ class MyApp extends StatelessWidget {
         // ChangeNotifierProvider.value(value: Cart()),
 
         //using create is safe or more efficient as compared to use value....
-        ChangeNotifierProvider(create: (context) => Cart())
+        ChangeNotifierProvider(create: (context) => Cart()),
+
+        ChangeNotifierProvider(create: (context) => Orders())
       ],
 
       child: MaterialApp(
