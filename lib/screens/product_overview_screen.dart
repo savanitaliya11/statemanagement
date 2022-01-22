@@ -101,7 +101,9 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
               icon: Icon(
                 Icons.shopping_cart,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, 'cart_screen');
+              },
             ),
           )
         ],

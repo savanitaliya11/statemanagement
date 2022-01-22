@@ -21,6 +21,14 @@ class Cart with ChangeNotifier {
     return _iteams.length;
   }
 
+  dynamic get totalAmount {
+    var total = 0;
+    _iteams.forEach((key, CartIteam) {
+      total += (CartIteam.price! * CartIteam.quntity!).floor();
+    });
+    return total;
+  }
+
   void addCart(String id, String title, double price) {
     if (_iteams.containsKey(id)) {
       _iteams.update(
