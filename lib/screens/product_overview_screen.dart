@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_print
+// ignore_for_file: prefer_const_constructors, avoid_print, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,13 +30,32 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
               color: Theme.of(context).colorScheme.primary,
             ),
             ListTile(
-              leading: IconButton(
-                icon: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.black87,
-                  size: 30.0,
+              leading: Consumer<Cart>(
+                builder: (BuildContext context, cart, Widget? child) => Stack(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.black87,
+                        size: 30.0,
+                      ),
+                      onPressed: () {},
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25, top: 3),
+                      child: CircleAvatar(
+                        child: Text(
+                          cart.iteamCount.toString(),
+                          style: TextStyle(fontSize: 13),
+                          textAlign: TextAlign.center,
+                        ),
+                        radius: 8,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                      ),
+                    )
+                  ],
                 ),
-                onPressed: () {},
               ),
               title: Text(
                 'Shop',
@@ -71,6 +90,8 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
               ),
             ],
           ),
+
+          //show selected iteam number cart....
           Consumer<Cart>(
             builder: (context, cart, Widget? ch) => Bandge(
               child: ch,
