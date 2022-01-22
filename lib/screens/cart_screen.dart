@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:statemanagement/componant/constant.dart';
 import 'package:statemanagement/provider/cart.dart';
+import 'package:statemanagement/provider/order.dart';
 import 'package:statemanagement/widgets/cart_iteam.dart';
 
 class MyCart extends StatelessWidget {
@@ -41,7 +42,11 @@ class MyCart extends StatelessWidget {
                       style: cartamountTextStyle),
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Provider.of<Orders>(context, listen: false).addOrders(
+                          cart.iteams.values.toList(), cart.totalAmount);
+                      cart.clear();
+                    },
                     child: Text(
                       'Order Now',
                       style:

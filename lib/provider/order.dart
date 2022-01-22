@@ -3,7 +3,7 @@ import 'package:statemanagement/provider/cart.dart';
 
 class OrderIteam {
   final String? id;
-  final double? amount;
+  final int? amount;
   final List<CartIteam> products;
   final DateTime dateTime;
 
@@ -18,7 +18,7 @@ class Orders with ChangeNotifier {
     return _orders;
   }
 
-  void addOrders(List<CartIteam> cartProducts, double total) {
+  void addOrders(List<CartIteam> cartProducts, int total) {
     _orders.insert(
         0,
         OrderIteam(
