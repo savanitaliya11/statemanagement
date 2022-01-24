@@ -6,6 +6,7 @@ import 'package:statemanagement/provider/cart.dart';
 import 'package:statemanagement/provider/order.dart';
 import 'package:statemanagement/provider/products.dart';
 import 'package:statemanagement/screens/cart_screen.dart';
+import 'package:statemanagement/screens/order_screen.dart';
 import 'package:statemanagement/screens/product_detail_screen.dart';
 import 'package:statemanagement/screens/product_overview_screen.dart';
 
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
           routes: {
             'product_overview_screen': (context) => ProductOverViewScreen(),
             'product_detail_screen': (context) => ProductDetailScreen(),
-            'cart_screen': (context) => MyCart()
+            'cart_screen': (context) => MyCart(),
+            'order_screen': (context) => OrderScreen()
           },
           theme: ThemeData(
               fontFamily: 'Lato',
